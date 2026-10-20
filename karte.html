@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interaktive Karte – FlyOrDrive</title>
+  <meta name="description" content="Interaktiver Vergleich: Energie, Zeit, CO₂ und Kosten von Cherry BX-2 und Smart fortwo auf verschiedenen Routen.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="map-page">
+
+  <nav class="nav solid" id="nav">
+    <div class="container nav-inner" style="max-width:none">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+        <span>Fly<b>Or</b>Drive</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menü öffnen" id="navToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Start</a>
+        <a href="index.html#fahrzeuge">Fahrzeuge</a>
+        <a href="index.html#methodik">Methodik</a>
+        <a href="index.html#medien">Interview &amp; Video</a>
+        <a href="karte.html" class="active">Karte</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="map-layout">
+    <aside class="panel">
+      <!-- Ansicht 1: Routen-Menü -->
+      <div class="view" id="menuView">
+        <div>
+          <h2>Fliegen oder fahren?</h2>
+          <p class="intro">Echte Flüge mit meiner Cherry BX-2 – jeder startet oder endet an einer meiner Homebases Bad Ragaz oder Locarno. Wähle einen Flug, um ihn mit dem Smart zu vergleichen.</p>
+        </div>
+
+        <div class="panel-block">
+          <span class="panel-label">Geflogene Routen · <span id="flightCount"></span></span>
+          <div class="route-list" id="routeList"></div>
+        </div>
+      </div>
+
+      <!-- Ansicht 2: Vergleich -->
+      <div class="view" id="resultView" hidden>
+        <div class="result-bar">
+          <button class="back-btn" id="backBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+            Route ändern
+          </button>
+        </div>
+
+        <div class="panel-block" id="results">
+          <div>
+            <div class="result-head">
+              <h3 id="resTitle">Vergleich</h3>
+              <span class="status" id="status"></span>
+            </div>
+            <div class="result-sub" id="resSub"></div>
+          </div>
+          <div class="headline" id="headline"></div>
+          <div class="legend">
+            <span><i class="p"></i>Cherry BX-2</span>
+            <span><i class="c"></i>Smart fortwo</span>
+          </div>
+          <div id="metrics"></div>
+        </div>
+
+        <div class="panel-block">
+          <span class="panel-label">Personen an Bord</span>
+          <div class="seg" id="paxSeg">
+            <button data-v="1">1 Person</button>
+            <button data-v="2" class="active">2 Personen</button>
+          </div>
+          <span class="panel-label" style="margin-top:6px">Antrieb Smart</span>
+          <div class="seg" id="carSeg">
+            <button data-v="petrol" class="active">Benzin</button>
+            <button data-v="electric">Elektrisch (EQ)</button>
+          </div>
+          <details class="params">
+            <summary>Verbrauch Smart anpassen</summary>
+            <div class="param-grid">
+              <label>Verbrauch Smart (<span id="pCarUnit">L</span>/100 km)<input type="number" id="pCar" min="1" max="30" step="0.1"></label>
+            </div>
+          </details>
+        </div>
+
+        <p class="footnote" id="footnote"></p>
+      </div>
+    </aside>
+
+    <div class="map-wrap">
+      <div class="map-hint" id="mapHint">Klicke auf einen Flugplatz, um den Start zu wählen</div>
+      <div id="map"></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/map.js"></script>
+</body>
+</html>
