@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FlyOrDrive – Kleinflugzeug vs. Auto</title>
+  <meta name="description" content="Wie effizient ist ein Kleinflugzeug im Betrieb im Vergleich zum Auto? Vertiefungsarbeit von Tiziano Berger: Cherry BX-2 vs. Smart fortwo.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+        <span>Fly<b>Or</b>Drive</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menü öffnen" id="navToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#projekt">Projekt</a>
+        <a href="#fahrzeuge">Fahrzeuge</a>
+        <a href="#methodik">Methodik</a>
+        <a href="#medien">Interview &amp; Video</a>
+        <a href="karte.html">Zur Karte</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Vertiefungsarbeit · INAP23A</span>
+        <h1>Fliegen oder fahren?<br><span class="grad">Effizienz im direkten Vergleich.</span></h1>
+        <p class="lead">
+          Wie effizient ist ein Kleinflugzeug im Betrieb im Vergleich zum Auto? Ich vergleiche mein
+          Experimentalflugzeug Cherry BX-2 mit einem Smart fortwo – auf echten Strecken, mit echten Zahlen.
+        </p>
+        <div class="hero-actions">
+          <a href="karte.html" class="btn btn-primary">
+            Interaktive Karte öffnen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#projekt" class="btn btn-ghost">Mehr zum Projekt</a>
+        </div>
+      </div>
+
+      <div class="versus">
+        <div class="versus-card plane">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+          <div><h3>Cherry BX-2</h3><small>Rotax 912 iS · 2 Sitze · Experimental</small></div>
+        </div>
+        <div class="versus-vs">VS</div>
+        <div class="versus-card car">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg></div>
+          <div><h3>Smart fortwo</h3><small>Kleinstwagen · 2 Sitze · Benzin / EQ</small></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Projekt -->
+  <section id="projekt">
+    <div class="container">
+      <div class="project-grid">
+        <div class="reveal">
+          <span class="kicker">Das Projekt</span>
+          <div class="section-head" style="margin-bottom:24px">
+            <h2>Ist Fliegen wirklich so verschwenderisch?</h2>
+          </div>
+          <p>
+            Kleinflugzeuge gelten oft als teures und ineffizientes Hobby. Doch ein Flugzeug fliegt in
+            gerader Linie, über Berge und Seen hinweg – während das Auto Umwege über Pässe, Tunnel und
+            Autobahnen fahren muss. Wie sieht die Bilanz also wirklich aus?
+          </p>
+          <p>
+            In meiner Vertiefungsarbeit untersuche ich die <strong>Effizienz von Kleinflugzeugen im Betrieb</strong>.
+            Dazu vergleiche ich Energieverbrauch, CO₂-Ausstoss, Reisezeit und Treibstoffkosten meines
+            eigenen Flugzeugs mit einem Auto derselben Grössenklasse: zwei Sitze gegen zwei Sitze.
+          </p>
+          <p>
+            Die Fliegerei betrifft mich persönlich – ich nutze sie sowohl als Hobby als auch zum Reisen.
+            Meine Homebases sind <strong>Bad Ragaz (LSZE)</strong> und <strong>Locarno (LSZL)</strong>, deshalb starten
+            oder enden alle untersuchten Routen dort. Die Flugdaten stammen aus meinen eigenen Flügen, die Werte
+            für das Auto werden über die reale Strassenroute berechnet.
+            Diese Website fasst die Resultate zusammen und lässt dich auf einer interaktiven Karte selbst vergleichen.
+          </p>
+        </div>
+
+        <aside class="question reveal">
+          <span class="label">Leitfrage</span>
+          <h3>Wie effizient ist das Kleinflugzeug im Betrieb im Vergleich zum Auto?</h3>
+          <dl class="meta">
+            <dt>Autor</dt><dd>Tiziano Berger</dd>
+            <dt>Klasse</dt><dd>INAP23A</dd>
+            <dt>Thema</dt><dd>Effizienz von Kleinflugzeugen im Betrieb</dd>
+            <dt>Quellen</dt><dd>Technische Daten, Statistiken, Interviews</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="num">1</div>
+          <h4>Energie &amp; Verbrauch</h4>
+          <p>Wie viele Kilowattstunden braucht jedes Fahrzeug für dieselbe Strecke – pro Fahrt und pro Person?</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">2</div>
+          <h4>Zeit &amp; Strecke</h4>
+          <p>Luftlinie gegen Strassennetz: Wie gross ist der Umweg am Boden und wie viel Zeit spart das Fliegen?</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">3</div>
+          <h4>Umwelt &amp; Kosten</h4>
+          <p>Wie viel CO₂ entsteht und was kostet der Treibstoff für eine Reise mit dem Flugzeug bzw. dem Auto?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fahrzeuge -->
+  <section id="fahrzeuge" class="alt">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="kicker">Die Kontrahenten</span>
+        <h2>Zwei Sitze. Zwei Welten.</h2>
+        <p>Für einen fairen Vergleich treten zwei Fahrzeuge mit gleicher Sitzplatzzahl gegeneinander an.</p>
+      </div>
+
+      <div class="vehicles">
+        <article class="vehicle plane reveal">
+          <div class="vehicle-media">
+            <span class="tag">Flugzeug</span>
+            <svg class="placeholder" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            <img data-src="aircraft.image" alt="Cherry BX-2" hidden>
+          </div>
+          <div class="vehicle-body">
+            <h3 data-bind="aircraft.name">Cherry BX-2</h3>
+            <div class="sub"><span data-bind="aircraft.category"></span> · <span data-bind="aircraft.engine"></span></div>
+            <p data-bind="aircraft.description"></p>
+            <div class="specs" id="aircraftSpecs"></div>
+          </div>
+        </article>
+
+        <article class="vehicle car reveal">
+          <div class="vehicle-media">
+            <span class="tag">Auto</span>
+            <svg class="placeholder" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+            <img data-src="car.image" alt="Smart fortwo" hidden>
+          </div>
+          <div class="vehicle-body">
+            <h3 data-bind="car.name">Smart fortwo</h3>
+            <div class="sub"><span data-bind="car.category"></span> · Benzin oder elektrisch</div>
+            <p data-bind="car.description"></p>
+            <div class="specs" id="carSpecs"></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodik -->
+  <section id="methodik">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Berechnungsgrundlage</span>
+        <h2>So wird verglichen</h2>
+        <p>Die Flugzeug-Werte stammen aus echten Flügen mit meiner Cherry BX-2. Für das Auto wird dieselbe Strecke über das reale Strassennetz berechnet.</p>
+      </div>
+      <div class="method-grid">
+        <div class="method reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M12 3l9 9-9 9"/></svg></div>
+          <h4>Strecke</h4>
+          <p>Flugzeug: tatsächlich geflogene Distanz (sonst Luftlinie + 5 %). Auto: echte Strassenroute zwischen denselben Flugplätzen (OpenStreetMap).</p>
+        </div>
+        <div class="method reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h4>Zeit</h4>
+          <p>Flugzeug: gemessene Flugzeit in der Luft. Auto: Fahrzeit laut Routenplaner, ohne Pausen und Stau.</p>
+        </div>
+        <div class="method reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+          <h4>Energie</h4>
+          <p>Beide tanken Bleifrei 95 an der Autotankstelle. Über den Heizwert (≈ 8.9 kWh/L) wird in kWh umgerechnet – so ist auch der Elektro-Smart vergleichbar.</p>
+        </div>
+        <div class="method reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/></svg></div>
+          <h4>CO₂</h4>
+          <p>2.37 kg CO₂ pro Liter Bleifrei 95. Beim Elektro-Smart wird der Schweizer Strommix (≈ 128 g/kWh) verwendet.</p>
+        </div>
+      </div>
+      <div class="formula reveal">
+        Energie<sub>Flugzeug</sub> = <b>getankte Liter</b> (gemessen) × 8.9 kWh/L<br>
+        Energie<sub>Auto</sub> &nbsp;&nbsp;&nbsp;&nbsp;= <b>Strassendistanz</b> × Verbrauch [L/100 km] / 100 × 8.9 kWh/L
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta-route" viewBox="0 0 400 200" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="8 10"><path d="M10 180 C 120 20, 260 20, 390 120"/></svg>
+        <div>
+          <h2>Probiere es selbst aus</h2>
+          <p>Wähle eine Route auf der interaktiven Karte und sieh sofort, wie Flugzeug und Auto bei Energie, Zeit, CO₂ und Kosten abschneiden.</p>
+        </div>
+        <div class="cta-action">
+          <a href="karte.html" class="btn btn-primary">
+            Zur Karte
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Medien -->
+  <section id="medien" class="alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Medien</span>
+        <h2>Erklärvideo &amp; Interview</h2>
+        <p>Das Wichtigste in wenigen Minuten erklärt – und die Sicht eines Experten aus der Praxis.</p>
+      </div>
+      <div class="media-grid">
+        <article class="media-card reveal">
+          <div class="media-frame" id="videoFrame">
+            <div class="media-empty">
+              <div>
+                <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                Das Erklärvideo folgt in Kürze.
+              </div>
+            </div>
+          </div>
+          <div class="media-body">
+            <h3>Erklärvideo</h3>
+            <p>In diesem Video erkläre ich die Fragestellung, die Methode und die wichtigsten Resultate meiner Vertiefungsarbeit.</p>
+          </div>
+        </article>
+
+        <article class="media-card reveal">
+          <div class="media-body">
+            <div class="interview-avatar" id="interviewInitials">JH</div>
+            <h3>Interview mit <span data-bind="media.interviewPartner"></span></h3>
+            <p>
+              Im Interview spreche ich mit einem erfahrenen Piloten über den Alltag in der Kleinfliegerei,
+              über Verbrauch, Kosten und darüber, wann sich das Fliegen gegenüber dem Auto wirklich lohnt.
+            </p>
+            <a class="btn btn-light" id="interviewBtn" href="#" aria-disabled="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
+              <span>Interview folgt</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Tiziano Berger · Vertiefungsarbeit INAP23A</div>
+      <div><a href="karte.html">Interaktive Karte</a> · <a href="#methodik">Methodik</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
