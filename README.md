@@ -1,5 +1,7 @@
 # FlyOrDrive
 
+Live: https://swissexperimentalbuild.ch/
+
 ## Datenquellen
 
 - Karte: © OpenStreetMap-Mitwirkende
