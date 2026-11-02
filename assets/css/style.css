@@ -340,7 +340,7 @@ footer a:hover { color: #fff; }
   padding: 2px 7px; border-radius: 999px; background: #dcfce7; color: #15803d; vertical-align: 1px;
 }
 .badge.calc { background: var(--surface-2); color: var(--muted); }
-.af-marker.home { border-color: #eab308; box-shadow: 0 0 0 3px rgba(234,179,8,.35), 0 2px 6px rgba(0,0,0,.2); font-size: 11px; }
+.af-marker.home { border-color: #eab308; box-shadow: 0 0 0 3px rgba(234,179,8,.35), 0 2px 6px rgba(0,0,0,.2); font-size: 13px; }
 select, input[type="number"] {
   width: 100%; font: inherit; font-size: .92rem; padding: 9px 10px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--surface); color: var(--text);
@@ -407,12 +407,17 @@ details.params summary { cursor: pointer; padding: 12px 0; font-weight: 600; fon
 }
 .af-marker {
   background: #fff; border: 2px solid var(--navy-2); color: var(--navy-2);
-  font: 700 10px var(--font-head); border-radius: 6px; padding: 1px 4px; white-space: nowrap;
+  font: 600 12px var(--font); border-radius: 999px; padding: 3px 9px; white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0,0,0,.2); transform: translate(-50%, -50%); position: absolute;
 }
 .af-marker.start { background: var(--plane); border-color: var(--plane); color: #fff; }
 .af-marker.end { background: var(--navy-2); color: #fff; }
 .leaflet-tooltip { font-family: var(--font); }
+.leaflet-tooltip.wp-label {
+  background: rgba(255,255,255,.9); border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  color: var(--navy-2); font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 6px;
+}
+.leaflet-tooltip.wp-label::before { display: none; }
 
 /* =====================================================================
    Responsive

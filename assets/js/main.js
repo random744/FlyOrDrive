@@ -41,14 +41,13 @@
     ["Homebases", cfg.airfields.filter((f) => f.home).map((f) => f.name).join(" / ")],
     ["Treibstoff", a.fuelType],
   ]);
-  const p = cfg.car.variants.petrol, e = cfg.car.variants.electric;
+  const c = cfg.car;
   specs(document.getElementById("carSpecs"), [
-    ["Leistung (Benzin)", `${fmt(p.powerKW)} kW (${fmt(p.powerKW * 1.36)} PS)`],
-    ["Verbrauch Benzin", `${fmt(p.consumptionPer100, 1)} L/100 km`],
-    ["Verbrauch EQ", `${fmt(e.consumptionPer100)} kWh/100 km`],
+    ["Leistung", `${fmt(c.powerKW)} kW (${fmt(c.powerKW * 1.36)} PS)`],
+    ["Verbrauch", `${fmt(c.consumptionPer100, 1)} L/100 km`],
     ["Sitzplätze", cfg.car.seats],
     ["Länge", "2.70 m"],
-    ["Treibstoff", "Bleifrei 95 / Strom"],
+    ["Treibstoff", "Bleifrei 95"],
   ]);
 
   /* Erklärvideo */

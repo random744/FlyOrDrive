@@ -7,6 +7,7 @@
   const byIcao = Object.fromEntries(cfg.airfields.map((a) => [a.icao, a]));
   const homes = cfg.airfields.filter((a) => a.home);
   const isHome = (icao) => !!(byIcao[icao] && byIcao[icao].home);
+  const place = (icao) => byIcao[icao].place || byIcao[icao].name;
 
   const ICON_PLANE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
   const ICON_CAR = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>';
@@ -26,8 +27,6 @@
     get from() { return this.route && this.route.from; },
     get to() { return this.route && this.route.to; },
     pax: 2,
-    carVariant: cfg.car.defaultVariant,
-    carCons: { ...Object.fromEntries(Object.entries(cfg.car.variants).map(([k, v]) => [k, v.consumptionPer100])) },
     road: null,          // { km, h, geometry, estimated }
   };
   const roadCache = new Map();
@@ -54,7 +53,7 @@
   const overview = L.latLngBounds(Object.values(markers).map((m) => m.getLatLng()));
 
   function afIcon(af, cls) {
-    return L.divIcon({ className: "", html: `<div class="af-marker ${cls}">${af.icao}</div>`, iconSize: [0, 0] });
+    return L.divIcon({ className: "", html: `<div class="af-marker ${cls}">${af.place || af.name}</div>`, iconSize: [0, 0] });
   }
 
   const routeLayer = L.layerGroup().addTo(map);
@@ -66,16 +65,15 @@
     if (!group.length) return;
     const head = document.createElement("div");
     head.className = "route-group";
-    head.textContent = `Homebase ${h.name} (${h.icao})`;
+    head.textContent = `Homebase ${h.name}`;
     routeList.appendChild(head);
     group.forEach((r) => {
       const btn = document.createElement("button");
       btn.className = "route-item";
       btn.route = r;
       btn.innerHTML = `<div><strong>${r.title}</strong>
-                       <small>${byIcao[r.from].name} → ${byIcao[r.to].name}</small>
-                       <small style="display:block">${fmtDate(r.flight.date)}${r.flight.date ? " · " : ""}${fmtTime(r.flight.minutes / 60)} · ${fmt(r.flight.fuelL, 1)} L</small></div>
-                       <span class="codes">${r.from} → ${r.to}</span>`;
+                       <small>${place(r.from)} → ${place(r.to)}</small>
+                       <small style="display:block">${fmtDate(r.flight.date)}${r.flight.date ? " · " : ""}${fmtTime(r.flight.minutes / 60)} · ${fmt(r.flight.fuelL, 1)} L</small></div>`;
       btn.addEventListener("click", () => selectRoute(r));
       routeList.appendChild(btn);
     });
@@ -99,7 +97,6 @@
   }
 
   segment("paxSeg", (v) => { state.pax = +v; render(); });
-  segment("carSeg", (v) => { state.carVariant = v; syncInputs(); render(); });
 
   function segment(id, onChange) {
     const el = $(id);
@@ -107,16 +104,6 @@
       el.querySelectorAll("button").forEach((x) => x.classList.toggle("active", x === b));
       onChange(b.dataset.v);
     }));
-  }
-
-  $("pCar").addEventListener("input", (e) => {
-    const v = parseFloat(e.target.value);
-    if (!isNaN(v) && v > 0) { state.carCons[state.carVariant] = v; render(); }
-  });
-
-  function syncInputs() {
-    $("pCar").value = state.carCons[state.carVariant];
-    $("pCarUnit").textContent = cfg.car.variants[state.carVariant].unit;
   }
 
   /* ---------- Auswahl ---------- */
@@ -137,9 +124,9 @@
       m.setIcon(afIcon(af, [af.home ? "home" : "", icao === from ? "start" : icao === to ? "end" : ""].join(" ")));
     });
 
-    if (r) $("resSub").textContent = `${r.title} · ${byIcao[from].name} → ${byIcao[to].name}`;
+    if (r) $("resSub").textContent = `${r.title} · ${byIcao[from].name} (${from}) → ${byIcao[to].name} (${to})`;
     $("mapHint").textContent = r
-      ? `${byIcao[from].name} → ${byIcao[to].name}`
+      ? `${place(from)} → ${place(to)}`
       : "Wähle einen Flug links oder klicke auf einen Flugplatz";
 
     history.replaceState(null, "", r ? `#${from}-${to}` : location.pathname);
@@ -159,8 +146,8 @@
 
     const a = byIcao[state.from], b = byIcao[state.to];
     const key = [a.icao, b.icao].join("-");
-    drawPlane(a, b);
-    map.fitBounds(L.latLngBounds([[a.lat, a.lon], [b.lat, b.lon]]), { padding: [60, 60] });
+    const flightPts = drawPlane(state.route);
+    map.fitBounds(L.latLngBounds(flightPts), { padding: [60, 60] });
 
     if (roadCache.has(key)) {
       state.road = roadCache.get(key);
@@ -195,14 +182,40 @@
     render();
   }
 
-  function drawPlane(a, b) {
-    const pts = greatCircle(a, b, 64);
+  // Flugweg: Start → Wegpunkte → Ziel
+  function flightPath(r) {
+    const via = (r.via || []).map(([name, lat, lon]) => ({ name, lat, lon }));
+    return [byIcao[r.from], ...via, byIcao[r.to]];
+  }
+
+  function drawPlane(r) {
+    const path = flightPath(r);
+    const pts = path.length > 2 ? path.map((p) => [p.lat, p.lon]) : greatCircle(path[0], path[1], 64);
     L.polyline(pts, { color: "#ffffff", weight: 7, opacity: .8 }).addTo(routeLayer);
     L.polyline(pts, { color: "#2f7cf6", weight: 3.5, dashArray: "2 9", lineCap: "round" }).addTo(routeLayer);
 
-    const mid = pts[Math.floor(pts.length / 2)];
-    const p1 = map.project(pts[Math.floor(pts.length / 2) - 1], 0);
-    const p2 = map.project(pts[Math.floor(pts.length / 2) + 1], 0);
+    path.slice(1, -1).forEach((wp) => {
+      L.circleMarker([wp.lat, wp.lon], { radius: 4, color: "#ffffff", weight: 2, fillColor: "#2f7cf6", fillOpacity: 1 })
+        .bindTooltip(wp.name, { permanent: true, direction: "right", offset: [6, 0], className: "wp-label" })
+        .addTo(routeLayer);
+    });
+
+    // Flugzeug-Symbol: Mitte der Luftlinie bzw. Mitte des längsten Abschnitts
+    let seg, mid;
+    if (path.length > 2) {
+      let i = 0;
+      for (let k = 1; k < path.length - 1; k++) {
+        if (haversine(path[k], path[k + 1]) > haversine(path[i], path[i + 1])) i = k;
+      }
+      seg = [pts[i], pts[i + 1]];
+      mid = [(seg[0][0] + seg[1][0]) / 2, (seg[0][1] + seg[1][1]) / 2];
+    } else {
+      const m = Math.floor(pts.length / 2);
+      seg = [pts[m - 1], pts[m + 1]];
+      mid = pts[m];
+    }
+    const p1 = map.project(seg[0], 0);
+    const p2 = map.project(seg[1], 0);
     const angle = Math.atan2(p2.x - p1.x, -(p2.y - p1.y)) * 180 / Math.PI;
     L.marker(mid, {
       interactive: false,
@@ -212,6 +225,7 @@
         html: `<div style="position:absolute;transform:translate(-50%,-50%) rotate(${angle}deg);width:30px;height:30px;color:#2f7cf6;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 1px 3px rgba(0,0,0,.35))">${ICON_PLANE}</div>`,
       }),
     }).addTo(routeLayer);
+    return pts;
   }
 
   function drawRoad() {
@@ -232,8 +246,10 @@
     const gcKm = haversine(a, b);
 
     const f = state.route.flight;
+    const path = flightPath(state.route);
+    const pathKm = path.slice(1).reduce((sum, p, k) => sum + haversine(path[k], p), 0);
     const plane = {
-      km: f.km || gcKm * ac.routingFactor,
+      km: f.km || (path.length > 2 ? pathKm : gcKm * ac.routingFactor),
       h: f.minutes / 60,
       fuel: f.fuelL,
       kWh: f.fuelL * C.kWhPerLiterPetrol,
@@ -243,16 +259,14 @@
 
     let car = null;
     if (state.road) {
-      const v = cfg.car.variants[state.carVariant];
-      const amount = state.road.km * state.carCons[state.carVariant] / 100;
-      const isEl = state.carVariant === "electric";
+      const liters = state.road.km * cfg.car.consumptionPer100 / 100;
       car = {
         km: state.road.km,
         h: state.road.h,
-        fuel: amount, fuelUnit: v.unit,
-        kWh: isEl ? amount : amount * C.kWhPerLiterPetrol,
-        co2: isEl ? amount * C.co2PerKWhGrid : amount * C.co2PerLiterPetrol,
-        chf: amount * (isEl ? v.priceChf : C.petrolPriceChf),
+        fuel: liters,
+        kWh: liters * C.kWhPerLiterPetrol,
+        co2: liters * C.co2PerLiterPetrol,
+        chf: liters * C.petrolPriceChf,
       };
     }
     return { gcKm, plane, car };
@@ -265,7 +279,7 @@
 
     const { gcKm, plane, car } = compute();
     const pax = state.pax;
-    $("resTitle").textContent = `${state.from} → ${state.to}`;
+    $("resTitle").textContent = `${place(state.from)} → ${place(state.to)}`;
 
     const rows = [
       { name: "Strecke", unit: "km", p: plane.km, c: car && car.km, d: 0 },
@@ -279,7 +293,7 @@
     metricsEl.innerHTML = rows.map(metricRow).join("") +
       `<div class="metric"><div class="metric-top"><span class="name">Verbrauch gesamt</span></div>
          <div class="bar-row p">${ICON_PLANE}<span style="font-size:.88rem">${fmt(plane.fuel, 1)} L Bleifrei 95</span><span></span></div>
-         ${car ? `<div class="bar-row c">${ICON_CAR}<span style="font-size:.88rem">${fmt(car.fuel, 1)} ${car.fuelUnit} ${state.carVariant === "electric" ? "Strom" : "Bleifrei 95"}</span><span></span></div>` : ""}
+         ${car ? `<div class="bar-row c">${ICON_CAR}<span style="font-size:.88rem">${fmt(car.fuel, 1)} L Bleifrei 95</span><span></span></div>` : ""}
        </div>`;
 
     if (car) {
@@ -292,9 +306,11 @@
     const f = state.route.flight;
     $("footnote").innerHTML =
       `Flugzeug: Flug${f.date ? " vom " + fmtDate(f.date) : ""} – ${fmtTime(f.minutes / 60)} in der Luft, ${fmt(f.fuelL, 1)} L Bleifrei 95. ` +
-      (f.km ? `Geflogene Distanz ${fmt(f.km)} km. ` : `Distanz: Luftlinie ${fmt(gcKm)} km + 5 %. `) +
+      (f.km ? `Geflogene Distanz ${fmt(f.km)} km. `
+        : state.route.via ? `Distanz entlang der Wegpunkte (${state.route.via.map((w) => w[0]).join(", ")}). `
+        : `Distanz: Luftlinie ${fmt(gcKm)} km + 5 %. `) +
       `Beide Fahrzeuge tanken Bleifrei 95 zu CHF ${fmt(C.petrolPriceChf, 2)}/L. ` +
-      `Smart ${cfg.car.variants[state.carVariant].label}: ${fmt(state.carCons[state.carVariant], 1)} ${cfg.car.variants[state.carVariant].unit}/100 km. ` +
+      `Smart: ${fmt(cfg.car.consumptionPer100, 1)} L/100 km. ` +
       `Fahrten zum/vom Flugplatz und Wartezeiten sind nicht eingerechnet. ` +
       (state.road && state.road.estimated
         ? `Strassendistanz geschätzt (Luftlinie × ${cfg.car.roadFactorFallback}).`
@@ -377,7 +393,6 @@
   }
 
   /* ---------- Start ---------- */
-  syncInputs();
   const h = location.hash.toUpperCase().match(/^#([A-Z0-9]{4})-([A-Z0-9]{4})$/);
   selectRoute((h && flights.find((r) => r.from === h[1] && r.to === h[2])) || null);
 })();

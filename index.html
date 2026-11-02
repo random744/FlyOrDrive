@@ -40,7 +40,7 @@
         <span class="eyebrow"><span class="dot"></span>Vertiefungsarbeit · INAP23A</span>
         <h1>Fliegen oder fahren?<br><span class="grad">Effizienz im direkten Vergleich.</span></h1>
         <p class="lead">
-          Wie effizient ist ein Kleinflugzeug im Betrieb im Vergleich zum Auto? Ich vergleiche mein
+          Wie effizient ist ein Kleinflugzeug im Betrieb im Vergleich zum Auto? Ich vergleiche das
           Experimentalflugzeug Cherry BX-2 mit einem Smart fortwo – auf echten Strecken, mit echten Zahlen.
         </p>
         <div class="hero-actions">
@@ -82,13 +82,13 @@
           </p>
           <p>
             In meiner Vertiefungsarbeit untersuche ich die <strong>Effizienz von Kleinflugzeugen im Betrieb</strong>.
-            Dazu vergleiche ich Energieverbrauch, CO₂-Ausstoss, Reisezeit und Treibstoffkosten meines
-            eigenen Flugzeugs mit einem Auto derselben Grössenklasse: zwei Sitze gegen zwei Sitze.
+            Dazu vergleiche ich Energieverbrauch, CO₂-Ausstoss, Reisezeit und Treibstoffkosten der
+            Cherry BX-2 mit einem Auto derselben Grössenklasse: zwei Sitze gegen zwei Sitze.
           </p>
           <p>
             Die Fliegerei betrifft mich persönlich – ich nutze sie sowohl als Hobby als auch zum Reisen.
             Meine Homebases sind <strong>Bad Ragaz (LSZE)</strong> und <strong>Locarno (LSZL)</strong>, deshalb starten
-            oder enden alle untersuchten Routen dort. Die Flugdaten stammen aus meinen eigenen Flügen, die Werte
+            oder enden alle untersuchten Routen dort. Die Flugdaten stammen aus echten Flügen, die Werte
             für das Auto werden über die reale Strassenroute berechnet.
             Diese Website fasst die Resultate zusammen und lässt dich auf einer interaktiven Karte selbst vergleichen.
           </p>
@@ -158,7 +158,7 @@
           </div>
           <div class="vehicle-body">
             <h3 data-bind="car.name">Smart fortwo</h3>
-            <div class="sub"><span data-bind="car.category"></span> · Benzin oder elektrisch</div>
+            <div class="sub"><span data-bind="car.category"></span></div>
             <p data-bind="car.description"></p>
             <div class="specs" id="carSpecs"></div>
           </div>
@@ -173,7 +173,7 @@
       <div class="section-head reveal">
         <span class="kicker">Berechnungsgrundlage</span>
         <h2>So wird verglichen</h2>
-        <p>Die Flugzeug-Werte stammen aus echten Flügen mit meiner Cherry BX-2. Für das Auto wird dieselbe Strecke über das reale Strassennetz berechnet.</p>
+        <p>Die Flugzeug-Werte stammen aus echten Flügen mit der Cherry BX-2. Für das Auto wird dieselbe Strecke über das reale Strassennetz berechnet.</p>
       </div>
       <div class="method-grid">
         <div class="method reveal">
@@ -189,17 +189,17 @@
         <div class="method reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
           <h4>Energie</h4>
-          <p>Beide tanken Bleifrei 95 an der Autotankstelle. Über den Heizwert (≈ 8.9 kWh/L) wird in kWh umgerechnet – so ist auch der Elektro-Smart vergleichbar.</p>
+          <p>Beide tanken Bleifrei 95 an der Autotankstelle. Über den Heizwert (≈ 8.9 kWh/L) wird in kWh umgerechnet.</p>
         </div>
         <div class="method reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/></svg></div>
           <h4>CO₂</h4>
-          <p>2.37 kg CO₂ pro Liter Bleifrei 95. Beim Elektro-Smart wird der Schweizer Strommix (≈ 128 g/kWh) verwendet.</p>
+          <p>2.37 kg CO₂ pro Liter Bleifrei 95 – für Flugzeug und Auto gleich.</p>
         </div>
       </div>
       <div class="formula reveal">
         Energie<sub>Flugzeug</sub> = <b>getankte Liter</b> (gemessen) × 8.9 kWh/L<br>
-        Energie<sub>Auto</sub> &nbsp;&nbsp;&nbsp;&nbsp;= <b>Strassendistanz</b> × Verbrauch [L/100 km] / 100 × 8.9 kWh/L
+        Energie<sub>Auto</sub> &nbsp;&nbsp;&nbsp;&nbsp;= <b>Strassendistanz</b> × 5.5 L/100 km / 100 × 8.9 kWh/L
       </div>
     </div>
   </section>
