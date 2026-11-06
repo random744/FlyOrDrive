@@ -37,7 +37,7 @@ window.FOD_CONFIG = {
     description:
       "Die Cherry BX-2 ist ein zweisitziges Tiefdecker-Eigenbauflugzeug, entworfen vom Schweizer " +
       "Max Brändli. Gebaut aus Holz und Verbundwerkstoffen ist sie leicht und aerodynamisch sauber. " +
-      "Angetrieben wird die Cherry von einem Rotax 912 iS mit elektronischer Einspritzung – " +
+      "Angetrieben wird die Cherry von einem Rotax 912 iS mit elektronischer Einspritzung, " +
       "einem der sparsamsten Flugmotoren seiner Klasse.",
   },
 
@@ -53,8 +53,8 @@ window.FOD_CONFIG = {
     image: "assets/img/smart-fortwo.jpg",
     description:
       "Der Smart fortwo ist mit nur 2.70 m Länge eines der kleinsten und leichtesten Autos auf dem Markt. " +
-      "Wie die Cherry bietet er genau zwei Sitzplätze – damit ist er der ideale, faire Vergleichspartner " +
-      "für ein zweisitziges Kleinflugzeug.",
+      "Wie die Cherry bietet er genau zwei Sitzplätze. Ich habe einen Smart zur Verfügung und kenne ihn " +
+      "aus dem Alltag. Darum ist er für mich der passende und faire Vergleichspartner für die Cherry.",
   },
 
   /* ---------- Flugplätze ----------
@@ -93,8 +93,7 @@ window.FOD_CONFIG = {
        { from: "LSZE", to: "LSZL", title: "Homebase zu Homebase", note: "…",
          flight: { minutes: 0, fuelL: 0, date: "2026-01-01" } },
 
-     Ideen für weitere Flüge: LSZE→LSZL, LSZE→LSZS Samedan, LSZE→LSZG Grenchen, LSZE→LSGG Genf,
-     LSZE→EDNY Friedrichshafen, LSZL→LSGS Sion, LSZL→LSZB Bern, LSZL→LSZF Birrfeld, LSZL→LIRJ Elba */
+     Ideen für weitere Flüge: LSZE→LSZG Grenchen, LSZE→LSGG Genf, LSZE→EDNY Friedrichshafen, LSZL→LSGS Sion, LSZL→LSZB Bern, LSZL→LSZF Birrfeld, LSZL→LIRJ Elba */
   routes: [
     { from: "LSZE", to: "LSZL", title: "Homebase zu Homebase", note: "Durchs Rheintal und über den San Bernardino.",
       via: [["Landquart", 46.967, 9.555], ["Chur", 46.850, 9.532], ["Thusis", 46.697, 9.440],
@@ -110,5 +109,13 @@ window.FOD_CONFIG = {
             ["NITAM", 45.1061, 7.1578], ["Laveno", 45.909, 8.616], ["Cannobio", 46.061, 8.698],
             ["Brissago", 46.120, 8.711]],
       flight: { minutes: 105, fuelL: 26.5, date: "2026-10-17" } },
+    { from: "LSZE", to: "LSZR", title: "Rheintal abwärts an den Bodensee", note: "Dem Rhein entlang via Balzers, Oberriet und Lustenau.",
+      via: [["Autobahnkreuz Sarganserland", 47.040, 9.458], ["Balzers", 47.066, 9.503],
+            ["Oberriet", 47.321, 9.567], ["Lustenau", 47.427, 9.658]],
+      flight: { minutes: 20, fuelL: 5.8, date: "2026-09-12" } },
+    { from: "LSZE", to: "LSZS", title: "Über den Julier ins Engadin", note: "Via Landquart und Chur über den Julierpass nach St. Moritz.",
+      via: [["Landquart", 46.967, 9.555], ["Chur", 46.850, 9.532], ["Julierpass", 46.472, 9.727],
+            ["St. Moritz", 46.498, 9.838]],
+      flight: { minutes: 25, fuelL: 8.5, date: "2026-10-12" } },
   ],
 };

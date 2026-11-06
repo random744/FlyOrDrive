@@ -305,16 +305,16 @@
 
     const f = state.route.flight;
     $("footnote").innerHTML =
-      `Flugzeug: Flug${f.date ? " vom " + fmtDate(f.date) : ""} – ${fmtTime(f.minutes / 60)} in der Luft, ${fmt(f.fuelL, 1)} L Bleifrei 95. ` +
+      `Der Flug${f.date ? " vom " + fmtDate(f.date) : ""} dauerte ${fmtTime(f.minutes / 60)} in der Luft und brauchte ${fmt(f.fuelL, 1)} L Bleifrei 95. ` +
       (f.km ? `Geflogene Distanz ${fmt(f.km)} km. `
         : state.route.via ? `Distanz entlang der Wegpunkte (${state.route.via.map((w) => w[0]).join(", ")}). `
-        : `Distanz: Luftlinie ${fmt(gcKm)} km + 5 %. `) +
-      `Beide Fahrzeuge tanken Bleifrei 95 zu CHF ${fmt(C.petrolPriceChf, 2)}/L. ` +
-      `Smart: ${fmt(cfg.car.consumptionPer100, 1)} L/100 km. ` +
+        : `Distanz als Luftlinie ${fmt(gcKm)} km + 5 %. `) +
+      `Flugzeug und Auto tanken Bleifrei 95 zu CHF ${fmt(C.petrolPriceChf, 2)}/L. ` +
+      `Der Smart braucht ${fmt(cfg.car.consumptionPer100, 1)} L/100 km. ` +
       `Fahrten zum/vom Flugplatz und Wartezeiten sind nicht eingerechnet. ` +
       (state.road && state.road.estimated
         ? `Strassendistanz geschätzt (Luftlinie × ${cfg.car.roadFactorFallback}).`
-        : `Strassenroute: <a href="https://project-osrm.org" target="_blank" rel="noopener">OSRM</a> / OpenStreetMap.`);
+        : `Strassenroute von <a href="https://project-osrm.org" target="_blank" rel="noopener">OSRM</a> / OpenStreetMap.`);
   }
 
   function metricRow(r) {
@@ -348,7 +348,7 @@
     const time = (e >= 1) === (t >= 1) ? `ist aber ${speed}` : `und ist ${speed}`;
     const saved = c.h - p.h;
     return `<strong>Das Flugzeug ${energy}, ${time}.</strong>` +
-      (saved > 0 ? `Zeitersparnis: ${fmtTime(saved)} pro Weg.` : `Das Auto ist auf dieser Strecke ${fmtTime(-saved)} schneller.`);
+      (saved > 0 ? `Zeitersparnis von ${fmtTime(saved)} pro Weg.` : `Das Auto ist auf dieser Strecke ${fmtTime(-saved)} schneller.`);
   }
 
   function setStatus(text, loading) {

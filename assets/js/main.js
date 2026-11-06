@@ -79,6 +79,14 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  /* Ziel 4: geflogene Routen als Links zur Karte */
+  const byIcao = Object.fromEntries(cfg.airfields.map((f) => [f.icao, f]));
+  const placeOf = (icao) => byIcao[icao].place || byIcao[icao].name;
+  document.getElementById("goalRoutes").innerHTML = cfg.routes
+    .filter((r) => byIcao[r.from] && byIcao[r.to] && r.flight && r.flight.minutes > 0)
+    .map((r) => `<li><a href="karte.html#${r.from}-${r.to}">${placeOf(r.from)} → ${placeOf(r.to)}</a></li>`)
+    .join("");
+
   /* Einblend-Animation */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
