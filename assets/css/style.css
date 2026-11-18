@@ -224,6 +224,9 @@ section { padding: 96px 0; }
   overflow-x: auto;
 }
 .formula b { color: #fdba74; font-weight: 600; }
+.sources { margin: 18px 0 0; padding-left: 18px; font-size: .85rem; color: var(--muted); }
+.sources li + li { margin-top: 4px; }
+.method a, .sources a { color: inherit; text-decoration: underline; }
 
 /* CTA */
 .cta {

@@ -17,9 +17,10 @@ window.FOD_CONFIG = {
 
   /* ---------- Physikalische Konstanten ---------- */
   constants: {
-    kWhPerLiterPetrol: 8.9,   // Heizwert Bleifrei 95 ≈ 32 MJ/L
-    co2PerLiterPetrol: 2.37,  // kg CO₂ pro Liter Bleifrei 95 (Verbrennung)
-    petrolPriceChf: 2.05,     // CHF pro Liter Bleifrei 95 – gilt für Flugzeug UND Auto
+    kWhPerLiterPetrol: 8.7,   // Heizwert Bleifrei 95: 42.6 MJ/kg × 0.737 kg/L ÷ 3.6 = 8.7 kWh/L (BAFU 2026)
+    co2PerLiterPetrol: 2.32,  // kg CO₂ pro Liter Bleifrei 95 (Verbrennung, BAFU 2026)
+    petrolPriceChf: 1.99,     // CHF pro Liter Bleifrei 95 – gilt für Flugzeug UND Auto (TCS 2026)
+    petrolPriceDate: "2026-11-06", // Stand des Benzinpreises (wird in der Karte angezeigt)
   },
 
   /* ---------- Flugzeug ---------- */
