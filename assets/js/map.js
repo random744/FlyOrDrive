@@ -310,7 +310,7 @@
         : state.route.via ? `Distanz entlang der Wegpunkte (${state.route.via.map((w) => w[0]).join(", ")}). `
         : `Distanz als Luftlinie ${fmt(gcKm)} km + 5 %. `) +
       `Flugzeug und Auto tanken Bleifrei 95 zu CHF ${fmt(C.petrolPriceChf, 2)}/L${C.petrolPriceDate ? " (Stand " + fmtDate(C.petrolPriceDate) + ")" : ""}. ` +
-      `Der Smart braucht ${fmt(cfg.car.consumptionPer100, 1)} L/100 km. ` +
+      `Der Smart braucht ${fmt(cfg.car.consumptionPer100, 1)} L/100 km (eigene Messung, Bordcomputer, über 3120 km). ` +
       `Fahrten zum/vom Flugplatz und Wartezeiten sind nicht eingerechnet. ` +
       (state.road && state.road.estimated
         ? `Strassendistanz geschätzt (Luftlinie × ${cfg.car.roadFactorFallback}).`
